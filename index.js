@@ -6,7 +6,8 @@ const verifyToken = require('./routes/validate-token');
 require('dotenv').config();
 const cors = require('cors');
 var corsOptions = {
-    origin: '*', // Reemplazar con dominio
+    credentials: true ,
+    origin: 'https://localhost:8081', // Reemplazar con dominio
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
@@ -21,7 +22,7 @@ app.use(bodyparser.json());
 
 
 
-const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.nhghk.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.USR}:${process.env.PASSWORD}@cluster0.nhghk.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
 //const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.ncdk5.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
 mongoose.connect(uri,
     { useNewUrlParser: true, useUnifiedTopology: true }

@@ -71,11 +71,17 @@ router.post('/login', async (req, res) => {
         name: user.name,
         id: user._id
     }, process.env.TOKEN_SECRET)
-    
-    res.header('auth-token', token).json({
-        error: null,
-        data: {token}
-    })
+   
+   
+    //res.cookie('token', token, { httpOnly: true });
+    res
+    .status(202)
+    .cookie('token', token, {
+        sameSite: 'strict',
+        path: '/',
+        expires: new Date(new Date().getTime() + 100 * 1000),
+        httpOnly: true,
+    }).send("cookie being initialised")
 })
 
 
